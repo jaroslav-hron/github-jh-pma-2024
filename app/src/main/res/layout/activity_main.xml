@@ -40,9 +40,9 @@
     </LinearLayout>
     <EditText
         android:id="@+id/etPlace"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:layout_width="match_parent"
         android:hint="Zadejte obec"
         android:textColor="@color/myColor03"/>
     <LinearLayout
