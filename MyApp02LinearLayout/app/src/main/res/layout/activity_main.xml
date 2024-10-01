@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,12 +10,77 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/app_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="Správa a aktivace majetku"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <!-- Fulltextové vyhledávání -->
+
+        <!-- Tlačítko pro skenování čárového kódu -->
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:baselineAligned="false"
+            android:hint="Vyhledat zařízení"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/scan_barcode_button"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Skenovat čárový kód" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="100dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnAddDevice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Přidat zařízení" />
+
+        <Button
+            android:id="@+id/btnAddDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Přidat více zařízení" />
+
+        <Button
+            android:id="@+id/btnCheckDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Zkontrolovat přidané a uvést do provozu" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
