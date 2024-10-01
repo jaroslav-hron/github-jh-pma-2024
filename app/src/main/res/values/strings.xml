@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyApp001LinearLayout</string>
+    <string name="btn_button01">Odeslat</string>
+    <string name="btn_button02">Vymazat</string>
 </resources>
