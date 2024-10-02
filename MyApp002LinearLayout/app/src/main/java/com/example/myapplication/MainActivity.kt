@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             val result = """
                 Moment setrvačnosti (I) m^4: $inertia
                 Ohybový moment (M) Nm: $moment
-                Maximální průhyb (y_max) m: $deflection
+                Maximální pruhyb (y_max) m: $deflection
             """.trimIndent()
             resultText.text = result
         }
