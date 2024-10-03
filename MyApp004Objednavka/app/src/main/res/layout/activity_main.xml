@@ -7,17 +7,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20sp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#FDFDFD">
 
     <TextView
         android:id="@+id/tvNadpis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jakou ptačí repliku i chcete objednat?"
+        android:text="Jakou repliku kachny divoké chcete objednat?"
         android:textAlignment="center"/>
 
         <RadioGroup
-            android:id="@+id/vyberZvere"
+            android:id="@+id/RGvyberZvere"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
