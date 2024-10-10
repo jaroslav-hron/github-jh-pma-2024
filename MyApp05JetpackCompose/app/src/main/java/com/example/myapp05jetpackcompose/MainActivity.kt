@@ -62,11 +62,15 @@ fun ComposeExample() {
     // Přidáme Scaffold, abychom mohli přidat TopAppBar
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Moje Aplikace", color = Color.White) }, // Nastaví barvu textu na bílou
+            CenterAlignedTopAppBar(  // Používá se CenterAlignedTopAppBar pro zarovnání textu na střed
+                title = {
+                    Text(
+                        "Moje Aplikace",
+                        color = Color.White  // Nastaví barvu textu na bílou
+                    )
+                },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.DarkGray,  // Nastaví pozadí na černé
-                    //titleContentColor = Color.White // Nastaví barvu textu na bílou
+                    containerColor = Color.DarkGray  // Nastaví pozadí na tmavě šedou
                 )
             )
         }
@@ -135,7 +139,7 @@ fun ComposeExample() {
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFFF0000),  // Hexadecimální barva pro pozadí tlačítka
-                        contentColor = Color.White  // Barva textu na tlačítku
+                        contentColor = Color(0xFFFFFFFF)  // Barva textu na tlačítku
                     )
                 ) {
                     Text("Vymazat")
