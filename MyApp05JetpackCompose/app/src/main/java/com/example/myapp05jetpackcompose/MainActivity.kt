@@ -59,14 +59,14 @@ fun ComposeExample() {
     var place by remember { mutableStateOf("") }
     var resultText by remember { mutableStateOf("") }
 
-    // Přidáme Scaffold, abychom mohli přidat TopAppBar
+
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(  // Používá se CenterAlignedTopAppBar pro zarovnání textu na střed
+            CenterAlignedTopAppBar(
                 title = {
                     Text(
                         "Moje Aplikace",
-                        color = Color.White  // Nastaví barvu textu na bílou
+                        color = Color.White
                     )
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
