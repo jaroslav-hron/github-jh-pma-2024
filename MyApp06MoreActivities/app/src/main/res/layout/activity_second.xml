@@ -12,14 +12,14 @@
         android:id="@+id/twInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Druhá aktivita: "/>
+        android:text="Data z první aktivity "/>
     <Button
         android:id="@+id/btnThird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Třetí aktivita"/>
     <Button
-        android:id="@+id/btnFourth"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Zavřít aktivitu"/>
