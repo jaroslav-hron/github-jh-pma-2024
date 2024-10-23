@@ -2,8 +2,11 @@ package com.example.myapp007toastsnackbar
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputBinding
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +27,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonToast.setOnClickListener {
-            val toast = Toast.makeText(this,"Nazdar mám hlad", Toast.LENGTH_LONG)
+            val inflater: LayoutInflater = layoutInflater
+            val customToastLayout: View = inflater.inflate(R.layout.custom_toast, null)
+
+            val toastIcon: ImageView = customToastLayout.findViewById(R.id.toast_icon)
+            val toastText: TextView = customToastLayout.findViewById(R.id.toast_message)
+
+            toastIcon.setImageResource(R.drawable.icon01)
+            toastText.text = "Nazdar mám hlad"
+
+            val toast = Toast(applicationContext)
+            toast.duration = Toast.LENGTH_LONG
+            toast.view = customToastLayout
             toast.show()
         }
         binding.buttonSnackbar.setOnClickListener {
