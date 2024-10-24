@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/twInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data z první aktivity "/>
-    <Button
-        android:id="@+id/btnThird"
+        android:textSize="18sp"
+        android:paddingBottom="20dp"
+        android:text="Data z první aktivity" />
+    <TextView
+        android:id="@+id/twInfo01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Třetí aktivita"/>
+        android:textSize="18sp"
+        android:paddingBottom="20dp"
+        android:text="Teď si vyber nějaký ovoce" />
+
+    <RadioGroup
+        android:id="@+id/rgFruits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbJabka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jabka" />
+
+        <RadioButton
+            android:id="@+id/rbHrusky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hrušky" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zavřít aktivitu"/>
+        android:text="Zpět" />
+
+    <Button
+        android:id="@+id/btnChooseFruit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Přejít do třetí aktivity" />
 
 </LinearLayout>

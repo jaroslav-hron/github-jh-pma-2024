@@ -1,20 +1,26 @@
 package com.example.myapp06moreactivities
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.myapp06moreactivities.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityThirdBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_third)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        binding = ActivityThirdBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val selectedFruit = intent.getStringExtra("SELECTED_FRUIT")
+
+        binding.twResult.text = "Vybrali jste: $selectedFruit"
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
+
 }
