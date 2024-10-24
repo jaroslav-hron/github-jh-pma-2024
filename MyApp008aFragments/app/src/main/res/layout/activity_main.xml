@@ -6,25 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="20dp">
+    android:padding="20sp">
+
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FrCont"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="600dp"/>
+        android:layout_height="600px"/>
+
+
     <Button
         android:id="@+id/btnFragment1"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_width="160sp"
+        android:layout_height="60sp"
         android:layout_alignParentBottom="true"
-        android:text="Fragment1"
-        android:textSize="20dp"/>
+        android:text="Fragment 1"
+        android:textSize="20sp"/>
+
     <Button
         android:id="@+id/btnFragment2"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_width="160sp"
+        android:layout_height="60sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Fragment2"
-        android:textSize="20dp"/>
+        android:text="Fragment 2"
+        android:textSize="20sp"/>
+
 </RelativeLayout>

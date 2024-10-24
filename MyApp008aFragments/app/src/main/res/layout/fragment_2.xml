@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment2"
-    android:padding="20dp">
+    android:padding="20sp">
+
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -16,13 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Další text."
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="40sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Třetí text"
+        android:text="Třetí finální krásný text."
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20sp"/>
 
 </FrameLayout>
