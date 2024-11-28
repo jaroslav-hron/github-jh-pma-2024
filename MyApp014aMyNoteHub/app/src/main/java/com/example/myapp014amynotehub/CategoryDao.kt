@@ -25,4 +25,16 @@ interface CategoryDao {
     // Načte všechny kategorie a vrátí je jako Flow
     @Query("SELECT * FROM category_table ORDER BY name ASC")
     fun getAllCategories(): Flow<List<Category>>
+
+    // Najde kategorii podle jejího názvu
+    @Query("SELECT * FROM category_table WHERE name = :name LIMIT 1")
+    suspend fun getCategoryByName(name: String): Category?
+
+    // Vymaže všechny záznamy z tabulky
+    @Query("DELETE FROM category_table")
+    suspend fun deleteAllCategories()
+
+    // Najde kategorii podle ID
+    @Query("SELECT * FROM category_table WHERE id = :categoryId LIMIT 1")
+    suspend fun getCategoryById(categoryId: Int): Category?
 }

@@ -25,4 +25,11 @@ interface NoteDao {
     // Načte všechny poznámky a vrátí je jako Flow, které umožňuje pozorování změn
     @Query("SELECT * FROM note_table ORDER BY id DESC")
     fun getAllNotes(): Flow<List<Note>>
+
+    // Vymaže všechny záznamy z tabulky
+    @Query("DELETE FROM note_table")
+    suspend fun deleteAllNotes()
+
+    @Query("SELECT * FROM note_table WHERE categoryId = :categoryId")
+    fun getNotesByCategoryId(categoryId: Int): Flow<List<Note>>
 }

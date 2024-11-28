@@ -63,6 +63,14 @@
             android:textColor="@color/secondaryTextColor"
             android:textSize="14sp"
             android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/note_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategorie"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
