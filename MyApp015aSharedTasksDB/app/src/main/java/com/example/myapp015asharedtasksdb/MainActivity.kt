@@ -12,12 +12,17 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp015asharedtasksdb.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val tasks = mutableListOf<Task>() // Lokální seznam úkolů
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +40,16 @@ class MainActivity : AppCompatActivity() {
         binding.fabAddTask.setOnClickListener {
             showAddTaskDialog()
         }
+        // Inicializace Firebase
+        FirebaseApp.initializeApp(this)
+        println("Firebase initialized successfully")
 
-        // Simulace načtení dat
-        loadTasks()
+        firestore = FirebaseFirestore.getInstance()
+
+        loadTasksFromFirestore()
+
+        listenToTaskUpdates()
+
     }
     private fun showAddTaskDialog() {
         val builder = AlertDialog.Builder(this)
@@ -66,21 +78,56 @@ class MainActivity : AppCompatActivity() {
     }
     private fun addTask(name: String) {
         val newTask = Task(
-            id = (tasks.size + 1).toString(), // Generujeme jednoduché ID
+            id = firestore.collection("tasks").document().id, // Vygenerujeme ID
             name = name,
             isCompleted = false,
-            assignedTo = "" // Zatím nepřiřazené
+            assignedTo = ""
         )
-        tasks.add(newTask)
-        taskAdapter.notifyItemInserted(tasks.size - 1)
+
+        // Uložíme úkol do Firestore
+        firestore.collection("tasks").document(newTask.id).set(newTask)
+            .addOnSuccessListener {
+                tasks.add(newTask)
+                taskAdapter.notifyItemInserted(tasks.size - 1)
+                println("Task added to Firestore: $name")
+            }
+            .addOnFailureListener { e ->
+                println("Error adding task: ${e.message}")
+            }
     }
 
-    private fun loadTasks() {
-        tasks.add(Task("1", "Buy groceries", isCompleted = false, assignedTo = "Alice"))
-        tasks.add(Task("2", "Clean the house", isCompleted = false, assignedTo = ""))
-        tasks.add(Task("3", "Prepare presentation", isCompleted = true, assignedTo = "Bob"))
-        taskAdapter.notifyDataSetChanged()
+
+    private fun loadTasksFromFirestore() {
+        firestore.collection("Task").get()
+            .addOnSuccessListener { result ->
+                tasks.clear()
+                for (document in result) {
+                    val task = document.toObject(Task::class.java)
+                    tasks.add(task)
+                }
+                taskAdapter.notifyDataSetChanged()
+                println("Tasks loaded from Firestore")
+            }
+            .addOnFailureListener { e ->
+                println("Error loading tasks: ${e.message}")
+            }
     }
+    private fun listenToTaskUpdates() {
+        firestore.collection("tasks").addSnapshotListener { snapshots, e ->
+            if (e != null) {
+                println("Listen failed: ${e.message}")
+                return@addSnapshotListener
+            }
+
+            tasks.clear()
+            for (document in snapshots!!) {
+                val task = document.toObject(Task::class.java)
+                tasks.add(task)
+            }
+            taskAdapter.notifyDataSetChanged()
+        }
+    }
+
 
     private fun updateTask(task: Task) {
         // Tady později napojíme Firestore update
