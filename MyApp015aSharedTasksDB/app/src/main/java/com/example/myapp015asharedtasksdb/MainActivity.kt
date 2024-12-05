@@ -1,21 +1,15 @@
 package com.example.myapp015asharedtasksdb
 
-
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp015asharedtasksdb.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
-
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,17 +34,16 @@ class MainActivity : AppCompatActivity() {
         binding.fabAddTask.setOnClickListener {
             showAddTaskDialog()
         }
+
         // Inicializace Firebase
         FirebaseApp.initializeApp(this)
-        println("Firebase initialized successfully")
-
         firestore = FirebaseFirestore.getInstance()
 
         loadTasksFromFirestore()
 
         listenToTaskUpdates()
-
     }
+
     private fun showAddTaskDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Add Task")
@@ -76,6 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         builder.show()
     }
+
     private fun addTask(name: String) {
         val newTask = Task(
             id = firestore.collection("tasks").document().id, // Vygenerujeme ID
@@ -96,14 +90,15 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
     private fun loadTasksFromFirestore() {
-        firestore.collection("Task").get()
+        firestore.collection("tasks").get()
             .addOnSuccessListener { result ->
                 tasks.clear()
                 for (document in result) {
                     val task = document.toObject(Task::class.java)
-                    tasks.add(task)
+                    if (task !in tasks) {
+                        tasks.add(task)  // Add task only if it's not already in the list
+                    }
                 }
                 taskAdapter.notifyDataSetChanged()
                 println("Tasks loaded from Firestore")
@@ -112,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                 println("Error loading tasks: ${e.message}")
             }
     }
+
     private fun listenToTaskUpdates() {
         firestore.collection("tasks").addSnapshotListener { snapshots, e ->
             if (e != null) {
@@ -119,15 +115,20 @@ class MainActivity : AppCompatActivity() {
                 return@addSnapshotListener
             }
 
-            tasks.clear()
-            for (document in snapshots!!) {
+            // Clear and update tasks from Firestore, but avoid duplicates
+            val newTasks = mutableListOf<Task>()
+            snapshots?.forEach { document ->
                 val task = document.toObject(Task::class.java)
-                tasks.add(task)
+                if (task !in newTasks) {
+                    newTasks.add(task)
+                }
             }
+
+            tasks.clear()
+            tasks.addAll(newTasks)
             taskAdapter.notifyDataSetChanged()
         }
     }
-
 
     private fun updateTask(task: Task) {
         // Tady později napojíme Firestore update
