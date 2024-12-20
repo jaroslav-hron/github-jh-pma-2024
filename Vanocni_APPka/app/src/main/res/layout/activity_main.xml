@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/christmas_background">
+
+    <ImageView
+        android:id="@+id/decorImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/christmas_tree"
+        android:layout_gravity="top|center_horizontal" />
+
+    <FrameLayout
+        android:id="@+id/snowContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/generateGiftButton"
+            style="@style/VanoceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Generuj dárek" />
+
+
+        <Button
+            android:id="@+id/snowButton"
+            style="@style/VanoceButton"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"
+            android:text="Přepínej počasí" />
+    </LinearLayout>
+</FrameLayout>
