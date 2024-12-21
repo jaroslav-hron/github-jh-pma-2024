@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Inicializace Firebase
+        FirebaseApp.initializeApp(this)
+        println("Firebase initialized successfully")
+
+        firestore = FirebaseFirestore.getInstance()
+
         // Inicializace RecyclerView
         taskAdapter = TaskAdapter(tasks) { task ->
             updateTask(task) // Callback pro změnu úkolu
@@ -35,13 +41,23 @@ class MainActivity : AppCompatActivity() {
             showAddTaskDialog()
         }
 
-        // Inicializace Firebase
-        FirebaseApp.initializeApp(this)
-        firestore = FirebaseFirestore.getInstance()
+        // Simulace načtení dat
+        //loadTasks()
 
         loadTasksFromFirestore()
-
         listenToTaskUpdates()
+    }
+
+    private fun loadTasks() {
+        //tasks.add(Task("1", "Buy groceries", isCompleted = false, assignedTo = "Alice"))
+        //tasks.add(Task("2", "Clean the house", isCompleted = false, assignedTo = ""))
+        //tasks.add(Task("3", "Prepare presentation", isCompleted = true, assignedTo = "Bob"))
+        taskAdapter.notifyDataSetChanged()
+    }
+
+    private fun updateTask(task: Task) {
+        // Tady později napojíme Firestore update
+        println("Task updated: ${task.name}, completed: ${task.isCompleted}")
     }
 
     private fun showAddTaskDialog() {
@@ -70,6 +86,17 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
+    /*private fun addTask(name: String) {
+        val newTask = Task(
+            id = (tasks.size + 1).toString(), // Generujeme jednoduché ID
+            name = name,
+            isCompleted = false,
+            assignedTo = "" // Zatím nepřiřazené
+        )
+        tasks.add(newTask)
+        taskAdapter.notifyItemInserted(tasks.size - 1)
+    }*/
+
     private fun addTask(name: String) {
         val newTask = Task(
             id = firestore.collection("tasks").document().id, // Vygenerujeme ID
@@ -96,9 +123,7 @@ class MainActivity : AppCompatActivity() {
                 tasks.clear()
                 for (document in result) {
                     val task = document.toObject(Task::class.java)
-                    if (task !in tasks) {
-                        tasks.add(task)  // Add task only if it's not already in the list
-                    }
+                    tasks.add(task)
                 }
                 taskAdapter.notifyDataSetChanged()
                 println("Tasks loaded from Firestore")
@@ -115,23 +140,13 @@ class MainActivity : AppCompatActivity() {
                 return@addSnapshotListener
             }
 
-            // Clear and update tasks from Firestore, but avoid duplicates
-            val newTasks = mutableListOf<Task>()
-            snapshots?.forEach { document ->
-                val task = document.toObject(Task::class.java)
-                if (task !in newTasks) {
-                    newTasks.add(task)
-                }
-            }
-
             tasks.clear()
-            tasks.addAll(newTasks)
+            for (document in snapshots!!) {
+                val task = document.toObject(Task::class.java)
+                tasks.add(task)
+            }
             taskAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun updateTask(task: Task) {
-        // Tady později napojíme Firestore update
-        println("Task updated: ${task.name}, completed: ${task.isCompleted}")
-    }
 }
