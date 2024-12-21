@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/christmas_background">
+    android:background="#B22222">
 
     <ImageView
         android:id="@+id/decorImage"
@@ -26,30 +26,42 @@
         <Button
             android:id="@+id/generateGiftButton"
             style="@style/VanoceButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generuj dárek" />
+            android:text="Generuj dárek"
+            android:textColor="@color/accent_green"/>
 
         <Button
             android:id="@+id/snowButton"
             style="@style/VanoceButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Přepínej počasí" />
+            android:text="Přepínej počasí"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/increaseSpeedButton"
             style="@style/VanoceButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zrychli sněžení" />
+            android:text="Zrychli sněžení"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/decreaseSpeedButton"
             style="@style/VanoceButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zpomal sněžení" />
+            android:text="Zpomal sněžení"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/btnExit"
+            style="@style/VanoceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ukonči vánoce"
+            android:textColor="@color/background_red" />
     </LinearLayout>
 
 </FrameLayout>
