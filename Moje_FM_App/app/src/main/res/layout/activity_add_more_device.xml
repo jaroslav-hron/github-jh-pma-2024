@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#696B7A79">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Nadpis -->
+        <TextView
+            android:id="@+id/titleAddMoreDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Přidat Více Zařízení"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF4500"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Prefix kódu zařízení -->
+        <EditText
+            android:id="@+id/devicePrefix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prefix kódu zařízení"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text" />
+
+        <!-- Poslední číslo z databáze -->
+        <Button
+            android:id="@+id/fetchLastNumberButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Načíst pořadí prefixu"
+            android:backgroundTint="#FF4500"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
+
+
+        <!-- Celkový počet zařízení -->
+        <EditText
+            android:id="@+id/totalDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Celkový počet zařízení"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <!-- Startovací kód zařízení -->
+
+        <EditText
+            android:id="@+id/deviceCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kód zařízení"
+            android:backgroundTint="#FF4500"
+            android:textColor="#FFFFFF"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+
+        <!-- Stejná pole jako u AddOneDevice -->
+        <!-- Budova -->
+        <AutoCompleteTextView
+            android:id="@+id/deviceStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Standard zařízení"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/deviceBuilding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Budova"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Podlaží -->
+        <EditText
+            android:id="@+id/deviceFloor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Podlaží"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Místnost -->
+        <EditText
+            android:id="@+id/deviceRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Místnost"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Popis zařízení -->
+        <EditText
+            android:id="@+id/deviceDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Popis zařízení"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Organizační jednotka -->
+        <EditText
+            android:id="@+id/organizationalUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Organizační jednotka - inventární vlastník"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF4500"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+
+        <!-- Provozní stav zařízení -->
+        <TextView
+            android:id="@+id/operationalStatusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Provozní stav zařízení"
+            android:textSize="16sp"
+            android:textColor="#FF4500"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/operationalStatusSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF4500"
+            android:hint="Vyber stav"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dropdown" />
+
+        <!-- Tlačítka -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="7dp">
+
+            <Button
+                android:id="@+id/addDevicesButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Přidat Zařízení"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Storno"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
